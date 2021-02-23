@@ -1,0 +1,7 @@
+todoist
+pycurl
+certifi
+io
+urllib
+json
+inspect
