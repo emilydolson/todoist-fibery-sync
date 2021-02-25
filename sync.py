@@ -196,16 +196,17 @@ for task in tasks[0]["result"]:
 
         todoist_task = api.items.get(task["Todoist/Todoist Task"]["Todoist/Todoist id"])
 
-        if "item" in todoist_task:
-            todoist_task = todoist_task["item"]
-        print(todoist_task["content"])
-        if task["workflow/state"]["enum/name"] == "Done":
-            print("done in fibery")
-            todoist_task["checked"] = 1
-        elif todoist_task["checked"] == 1:
-            print("updating state")
-            result = make_api_call(f'[{{"command": "fibery.entity/update", "args": {{"type": "Strategy and Planning/Task", "entity": {{"fibery/id": "{task["fibery/id"]}", "workflow/state": {{"fibery/id": "29ac67a0-09fa-11ea-a3d8-6c6046a7a9a7"}}  }}}}}}]')
-            validate_result(result)
+        if todoist_task is not None:            
+            if "item" in todoist_task:
+                todoist_task = todoist_task["item"]
+            print(todoist_task["content"])
+            if task["workflow/state"]["enum/name"] == "Done":
+                print("done in fibery")
+                todoist_task["checked"] = 1
+            elif todoist_task["checked"] == 1:
+                print("updating state")
+                result = make_api_call(f'[{{"command": "fibery.entity/update", "args": {{"type": "Strategy and Planning/Task", "entity": {{"fibery/id": "{task["fibery/id"]}", "workflow/state": {{"fibery/id": "29ac67a0-09fa-11ea-a3d8-6c6046a7a9a7"}}  }}}}}}]')
+                validate_result(result)
 
 tasks, task_dict, task_dict_by_name = get_tasks()
 
