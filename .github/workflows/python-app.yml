@@ -21,7 +21,7 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
-        sudo apt-get install curl
+        sudo apt-get install libcurl4-openssl-dev libssl-dev curl
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run
