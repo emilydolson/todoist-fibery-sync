@@ -21,7 +21,7 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
-        suod apt-get install libcurl
+        sudo apt-get install libcurl
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run
