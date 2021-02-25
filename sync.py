@@ -6,6 +6,7 @@ from urllib.parse import urlencode
 import json
 from inspect import getframeinfo, stack
 import os
+import sys
 
 relevant_project_ids = set([2251589958, 2251590566, 2251683318])
 idea_project_ids = set([2251589958, 2251590566])
@@ -18,11 +19,15 @@ if os.path.exists("todoist_secret.txt"):
     td_file = open("todoist_secret.txt")
     todoist_secret = td_file.readlines()[0]
     td_file.close()
+else:
+    todoist_secret = sys.argv[2]
 
 if os.path.exists("fibery_token.txt"):
     fb_file = open("fibery_token.txt")
     fibery_token = fb_file.readlines()[0]
     fb_file.close()
+else:
+    fibery_token = sys.argv[1]
 
 
 api = todoist.TodoistAPI(todoist_secret)
