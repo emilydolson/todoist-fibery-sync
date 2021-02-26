@@ -228,12 +228,12 @@ for pid in task_id_map.keys():
 for pid in roots:
     task = task_id_map[pid]
     # print(task)
-    if task["parent_id"] is not None and task_id_map[task["parent_id"]]["content"] in task_dict_by_name:
+    if task["parent_id"] is not None and task["parent_id"] in task_id_map and task_id_map[task["parent_id"]]["content"] in task_dict_by_name:
         # print("parent task")
         fibery_parent_id = task_dict_by_name[task_id_map[task["parent_id"]]["content"]]["fibery/id"]
         todoist_parent_id = task_dict_by_name[task_id_map[task["parent_id"]]["content"]]["Todoist/Todoist Task"]["fibery/id"]
         add_todoist_task(task, fibery_parent_id, todoist_parent_id, "Task", "Task")        
-    if task["parent_id"] is not None and task_id_map[task["parent_id"]]["content"] in idea_dict_by_name:        
+    if task["parent_id"] is not None and task["parent_id"] in task_id_map and task_id_map[task["parent_id"]]["content"] in idea_dict_by_name:        
         # print("parent idea")
         fibery_parent_id = task_dict_by_name[task_id_map[task["parent_id"]]["content"]]["fibery/id"]
         todoist_parent_id = task_dict_by_name[task_id_map[task["parent_id"]]["content"]]["Todoist/Todoist Task"]["fibery/id"]
